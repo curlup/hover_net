@@ -704,7 +704,16 @@ class InferManager(base.InferManager):
             json_path = "%s/json/%s.json" % (output_dir, wsi_name)
         else:
             json_path = "%s/%s.json" % (output_dir, wsi_name)
-        self.__save_json(json_path, self.wsi_inst_info, mag=self.proc_mag, and_csv=self.save_csv)
+        
+        new_inst_dict = self.__save_json(json_path, self.wsi_inst_info, mag=self.proc_mag)
+        if self.save_csv: 
+            if self.save_mask or self.save_thumb:
+                csv_path = "%s/csv/%s.csv" % (output_dir, wsi_name)
+            else:
+                csv_path = "%s/%s.csv" % (output_dir, wsi_name)
+
+            self.__save_csv(csv_path, new_inst_dict)
+        
         end = time.perf_counter()
         log_info("Save Time: {0}".format(end - start))
 
