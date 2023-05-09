@@ -12,4 +12,5 @@ wsi \
 --output_dir=dataset/sample_wsis/out/ \
 --input_mask_dir=dataset/sample_wsis/msk/ \
 --save_thumb \
+--save_csv \
 --save_mask

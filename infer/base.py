@@ -77,7 +77,7 @@ class InferManager(object):
         self.post_proc_func = getattr(module_lib, "process")
         return
 
-    def __save_json(self, path, old_dict, mag=None):
+    def __save_json(self, path, old_dict, mag=None, and_csv=None):
         new_dict = {}
         for inst_id, inst_info in old_dict.items():
             new_inst_info = {}
@@ -91,4 +91,10 @@ class InferManager(object):
         json_dict = {"mag": mag, "nuc": new_dict}  # to sync the format protocol
         with open(path, "w") as handle:
             json.dump(json_dict, handle)
+        if and_csv:
+            writer = csv.DictWriter(and_csv, fieldnames=['id']+list(new_dict[int(inst_id)].keys()))
+            writer.writeheader()
+            for id, inst in new_dict.items():
+                writer.writerow(dict(inst, id=id))
+
         return new_dict

@@ -704,7 +704,7 @@ class InferManager(base.InferManager):
             json_path = "%s/json/%s.json" % (output_dir, wsi_name)
         else:
             json_path = "%s/%s.json" % (output_dir, wsi_name)
-        self.__save_json(json_path, self.wsi_inst_info, mag=self.proc_mag)
+        self.__save_json(json_path, self.wsi_inst_info, mag=self.proc_mag, and_csv=self.save_csv)
         end = time.perf_counter()
         log_info("Save Time: {0}".format(end - start))
 

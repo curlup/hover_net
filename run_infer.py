@@ -69,6 +69,7 @@ options:
     --tile_shape=<n>        Shape of tiles for processing. [default: 2048]
     --save_thumb            To save thumb. [default: False]
     --save_mask             To save mask. [default: False]
+    --save_csv              To save csv. [default: False]
 """
 
 import torch
@@ -173,6 +174,7 @@ if __name__ == '__main__':
             'tile_shape'     : int(sub_args['tile_shape']),
             'save_thumb'     : sub_args['save_thumb'],
             'save_mask'      : sub_args['save_mask'],
+            'save_csv'       : sub_args['save_csv'],
         })
     # ***
     
