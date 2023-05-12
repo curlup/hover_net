@@ -155,6 +155,7 @@ def process(pred_map, nr_types=None, return_centroids=False):
                 "centroid": inst_centroid,
                 "contour": inst_contour,
                 "type_prob": None,
+                "types_prob": None,
                 "type": None,
             }
 
@@ -179,6 +180,7 @@ def process(pred_map, nr_types=None, return_centroids=False):
             type_prob = type_dict[inst_type] / (np.sum(inst_map_crop) + 1.0e-6)
             inst_info_dict[inst_id]["type"] = int(inst_type)
             inst_info_dict[inst_id]["type_prob"] = float(type_prob)
+            inst_info_dict[inst_id]["types_prob"] = {int(k) : float(v / (np.sum(inst_map_crop) + 1.0e-6)) for k, v in type_dict}
 
     # print('here')
     # ! WARNING: ID MAY NOT BE CONTIGUOUS
